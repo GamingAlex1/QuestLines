@@ -1,0 +1,32 @@
+name: Deploy Plugin
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Build Plugin
+      run: ./gradlew build # Or `mvn package` if you are using Maven
+
+    - name: Upload to GitHub Releases
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          build/libs/*.jar # Adjust the path to your plugin JAR file
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
