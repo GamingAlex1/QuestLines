@@ -1,0 +1,10 @@
+name: QuestLines
+version: 'v1.0'
+main: QuestLines.LineQuests.QuestLines
+api-version: '1.20'
+authors: [JetAbyss]
+description: Doing gamer tings.
+commands:
+  war:
+    description: start things
+    usage: /<command>
